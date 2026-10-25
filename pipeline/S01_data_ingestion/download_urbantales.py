@@ -47,18 +47,55 @@ def fetch(job):
 
 
 def main():
-    out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(REPO, "data", "raw")
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Download UrbanTALES raw data files")
+    parser.add_argument("output_dir", nargs="?", default=os.path.join(REPO, "data", "raw"), help="Output directory")
+    parser.add_argument("--kinds", nargs="+", choices=list(NAMES.keys()), default=list(NAMES.keys()), help="File types to download")
+    parser.add_argument("--workers", type=int, default=12, help="Number of concurrent download workers")
+    parser.add_argument("--cases", nargs="+", default=None, help="Specific cases to download")
+    args = parser.parse_args()
+
+    out = args.output_dir
+    selected_kinds = set(args.kinds)
+    selected_cases = set(args.cases) if args.cases else None
+
     jobs = []
     with open(CATALOG, newline="") as fh:
         for r in csv.DictReader(fh):
+            if selected_cases and r["case"] not in selected_cases:
+                continue
             os.makedirs(os.path.join(out, r["case"]), exist_ok=True)
-            for kind, name in NAMES.items():
+            for kind in selected_kinds:
+                name = NAMES[kind]
                 if r.get(f"{kind}_url"):
                     jobs.append((r[f"{kind}_url"], os.path.join(out, r["case"], name.format(c=r["case"]))))
-    with cf.ThreadPoolExecutor(8) as pool:
-        status = list(pool.map(fetch, jobs))
-    failed = [s for s in status if s.startswith("FAILED")]
-    print(f"{len(jobs)} files, {status.count('ok')} downloaded, {status.count('skipped')} skipped, {len(failed)} failed")
+
+    total_jobs = len(jobs)
+    print(f"Starting download of {total_jobs} files using {args.workers} workers into {out}...")
+
+    completed = 0
+    ok_count = 0
+    skipped_count = 0
+    failed = []
+
+    with cf.ThreadPoolExecutor(args.workers) as pool:
+        future_to_job = {pool.submit(fetch, job): job for job in jobs}
+        for future in cf.as_completed(future_to_job):
+            res = future.result()
+            completed += 1
+            if res == "ok":
+                ok_count += 1
+            elif res == "skipped":
+                skipped_count += 1
+            elif res.startswith("FAILED"):
+                failed.append(res)
+
+            if completed % 50 == 0 or completed == total_jobs:
+                pct = (completed / total_jobs) * 100
+                print(f"[{completed}/{total_jobs} - {pct:.1f}%] ok: {ok_count}, skipped: {skipped_count}, failed: {len(failed)}")
+
+    print(f"\nFinal Summary: {total_jobs} files, {ok_count} downloaded, {skipped_count} skipped, {len(failed)} failed")
     for s in failed:
         print(s)
 
