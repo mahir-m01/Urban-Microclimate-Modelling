@@ -1,0 +1,24 @@
+case,subset,flag_code,severity,detail
+AU-Preston,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 0.0°.
+AU-SurreyHills,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 0.0°.
+CA-Sunset,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 292.5°.
+CN-BE-V1_d00,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 0.0°, but physical namelist dpdxy forcing drives flow at 270.0° (90° offset)."
+CN-BE-V1_d105,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 105.0°, but physical namelist dpdxy forcing drives flow at 15.0° (90° offset)."
+CN-BE-V1_d120,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 120.0°, but physical namelist dpdxy forcing drives flow at 30.0° (90° offset)."
+CN-BE-V1_d135,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 135.0°, but physical namelist dpdxy forcing drives flow at 45.0° (90° offset)."
+CN-BE-V1_d15,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 15.0°, but physical namelist dpdxy forcing drives flow at 285.0° (90° offset)."
+CN-BE-V1_d150,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 150.0°, but physical namelist dpdxy forcing drives flow at 60.0° (90° offset)."
+CN-BE-V1_d165,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 165.0°, but physical namelist dpdxy forcing drives flow at 75.0° (90° offset)."
+CN-BE-V1_d180,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 180.0°, but physical namelist dpdxy forcing drives flow at 90.0° (90° offset)."
+CN-BE-V1_d30,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 30.0°, but physical namelist dpdxy forcing drives flow at 300.0° (90° offset)."
+CN-BE-V1_d45,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 45.0°, but physical namelist dpdxy forcing drives flow at 315.0° (90° offset)."
+CN-BE-V1_d60,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 60.0°, but physical namelist dpdxy forcing drives flow at 330.0° (90° offset)."
+CN-BE-V1_d75,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 75.0°, but physical namelist dpdxy forcing drives flow at 345.0° (90° offset)."
+CN-BE-V1_d90,realistic,DIRECTION_OFFSET_90DEG,CRITICAL,"Case name specifies 90.0°, but physical namelist dpdxy forcing drives flow at 0.0° (90° offset)."
+FI-Torni,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 315.0°.
+JP-Yoyogi,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 22.5°.
+NL-Amsterdam,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 315.0°.
+PL-Lipowa,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 90.0°.
+PL-Narutowicza,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 90.0°.
+SG-TelokKurau06,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 337.5°.
+US-WestPhoenix,realistic,NO_DIR_IN_NAME,WARNING,Case name lacks directional suffix; namelist dpdxy confirms physical forcing direction is 0.0°.
