@@ -1,0 +1,4 @@
+case,subset,flag_code,severity,detail
+CN-BE-V2_d00,realistic,KNOWN_DOMAIN_MISMATCH,CRITICAL,Domain size mismatch documented in UrbanTALES data/README.md; exclude from spatial wind modeling.
+CN-CD-V1_d00,realistic,KNOWN_DOMAIN_MISMATCH,CRITICAL,Domain size mismatch documented in UrbanTALES data/README.md; exclude from spatial wind modeling.
+CN-SH-V1_d00,realistic,KNOWN_DOMAIN_MISMATCH,CRITICAL,Domain size mismatch documented in UrbanTALES data/README.md; exclude from spatial wind modeling.
