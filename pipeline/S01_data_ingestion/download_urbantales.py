@@ -21,7 +21,13 @@ socket.setdefaulttimeout(90)  # a stalled download would otherwise hang a worker
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 CATALOG = os.path.join(REPO, "data", "catalog.csv")
-NAMES = {"topo": "{c}_topo", "ped": "{c}_ped.nc", "p3d": "{c}_p3d", "profile": "profile-{c}.csv"}
+NAMES = {
+    "topo": "{c}_topo",
+    "ped": "{c}_ped.nc",
+    "p3d": "{c}_p3d",
+    "profile": "profile-{c}.csv",
+    "ts": "{c}_ts.nc",
+}
 
 
 def fetch(job):
