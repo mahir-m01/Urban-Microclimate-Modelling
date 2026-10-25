@@ -1,0 +1,15 @@
+case,subset,flag_code,severity,detail
+AU-Mel-U12_d00,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.297) differs from topo lp (0.348).
+AU-Mel-U12_d90,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.297) differs from topo lp (0.348).
+AU-Mel-U16_d00,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.199) differs from topo lp (0.252).
+AU-Mel-U16_d15,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.199) differs from topo lp (0.252).
+AU-Mel-U16_d30,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.199) differs from topo lp (0.252).
+AU-Mel-U16_d45,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.199) differs from topo lp (0.252).
+AU-Mel-U16_d90,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.199) differs from topo lp (0.252).
+AU-Mel-U1_d00,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.281) differs from topo lp (0.348).
+CN-BE-V2_d00,realistic,KNOWN_DOMAIN_MISMATCH,CRITICAL,Known domain size mismatch documented in UrbanTALES data/README.md.
+CN-BE-V2_d00,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.167) differs from topo lp (0.329).
+CN-CD-V1_d00,realistic,KNOWN_DOMAIN_MISMATCH,CRITICAL,Known domain size mismatch documented in UrbanTALES data/README.md.
+CN-CD-V1_d00,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.008) differs from topo lp (0.361).
+CN-SH-V1_d00,realistic,KNOWN_DOMAIN_MISMATCH,CRITICAL,Known domain size mismatch documented in UrbanTALES data/README.md.
+CN-SH-V1_d00,realistic,MASK_TOPO_DISCREPANCY,WARNING,NetCDF NaN fraction (0.135) differs from topo lp (0.455).
