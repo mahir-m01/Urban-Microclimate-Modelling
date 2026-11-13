@@ -265,10 +265,15 @@ Unit tests in `src/urbanwind/dl/tests/test_losses.py` verify:
 
 ### Smoke run
 
-`pipeline/S12_architecture_search/loss_smoke.py` trains a fresh S11 U-Net for 200 steps with each loss on the same 20 development cases (10 idealized and 10 realistic). Every loss sees the same patches in the same order. It checks that the loss stays finite and that the mean of the last 20 steps is below the mean of the first 20. The curves are in `outputs/loss_smoke.json`.
+`pipeline/S12_architecture_search/loss_smoke.py` trains a fresh S11 U-Net for 200 steps with each loss on the same 20 development cases (10 idealized and 10 realistic). Every loss sees the same patches in the same order. It checks that the loss stays finite and that the mean of the last 20 steps is below the mean of the first 20. The curves are in `outputs/loss_smoke.json`. Run on mps (Apple GPU) with the defaults: 200 steps of 8 patches of 128×128 cells, every loss starting from the same weights.
 
 | Loss | First 20 steps | Last 20 steps | Finite | Falls |
 | --- | --- | --- | --- | --- |
-| (fill in from your run) | | | | |
+| `l1` | 1.3443 | 0.7769 | yes | yes |
+| `sobel` | 1.4439 | 0.8649 | yes | yes |
+| `tail_w1` | 1.4873 | 0.8049 | yes | yes |
+| `tail_w2` | 1.8417 | 0.9956 | yes | yes |
+| `fft` | 1.5629 | 0.9337 | yes | yes |
+| `mean_consistency` | 2.1434 | 1.1521 | yes | yes |
 
 The smoke run only shows that each loss can train the network. Whether a loss improves the predictions is measured in S15.
