@@ -1,0 +1,25 @@
+# S12 Res-U-Net architecture candidate: S11 layout with residual blocks
+# Run: uv run python -m urbanwind.dl.train --config pipeline/S12_architecture_search/configs/res_unet.yaml --seed 0
+exp_id: s12_res_unet
+stage: S12
+out_dir: pipeline/S12_architecture_search/outputs/runs
+split: grouped
+model:
+  name: res_unet
+  kwargs: {widths: [24, 48, 96, 192], bottleneck: 384, dropout: 0.08}
+loss: l1
+lr: 3.6e-4
+min_lr: 1.0e-5
+weight_decay: 6.5e-5
+batch: 16
+max_epochs: 100
+patience: 30
+inner_val_fraction: 0.15
+patch: 256
+border: 16
+mirror: true
+amp: true
+clip: 1.0
+mirror_tta: true
+native_upsample: bilinear
+
