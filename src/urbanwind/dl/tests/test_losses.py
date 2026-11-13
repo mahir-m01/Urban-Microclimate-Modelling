@@ -136,9 +136,8 @@ def test_empty_mask_returns_zero_and_no_nan():
 
 def test_losses_registry_coverage():
     """All required loss keys from S11, S12b, and S15 are registered."""
-    required = ["l1", "mse", "gradient", "sobel", "tail_w1", "tail_w2", "fft", "mean_consistency"]
-    for key in required:
-        assert key in LOSSES, f"Missing loss key: {key}"
+    required = ["l1", "mse", "sobel", "tail_w1", "tail_w2", "fft", "mean_consistency"]
+    assert sorted(LOSSES) == sorted(required), "one registry name per loss"
 
 
 def test_losses_optimize_and_stay_finite():
@@ -189,3 +188,33 @@ def test_losses_optimize_and_stay_finite():
             f"{loss_name} did not decrease after optimization: initial={initial_loss}, final={final_loss}"
         )
 
+
+def test_tail_weights_are_capped_after_the_power():
+    """With gamma = 2 a weight is capped at 5, not at 5 squared."""
+    # 4 valid cells, y = 1, 1, 1, 5: mean 2, ratios 0.5, 0.5, 0.5, 2.5
+    # gamma = 2 weights: 0.25, 0.25, 0.25, 6.25 -> capped at 5.0
+    # pred = y + 1, so every error is 1: loss = (3 * 0.25 + 5.0) / 4 = 1.4375
+    y = torch.tensor([1.0, 1.0, 1.0, 5.0]).view(1, 1, 2, 2)
+    mask = torch.ones(1, 1, 2, 2)
+    loss = masked_tail_l1_gamma2(y + 1.0, y, mask)
+    assert loss.item() == pytest.approx(1.4375, rel=1e-6)
+
+
+@pytest.mark.parametrize("name", sorted(LOSSES))
+def test_empty_mask_still_backpropagates(name):
+    """A batch with no valid cells gives 0 and a finite gradient, so training does not stop."""
+    pred = (torch.rand(2, 1, 8, 8) + 0.5).requires_grad_(True)
+    loss = LOSSES[name](pred, torch.rand(2, 1, 8, 8), torch.zeros(2, 1, 8, 8))
+    loss.backward()
+    assert loss.item() == 0.0
+    assert torch.isfinite(pred.grad).all()
+
+
+@pytest.mark.parametrize("name", sorted(LOSSES))
+def test_half_precision_inputs_give_a_float32_loss(name):
+    pred, y = torch.rand(1, 1, 8, 8) + 0.5, torch.rand(1, 1, 8, 8) + 0.5
+    mask = torch.ones(1, 1, 8, 8)
+    full = LOSSES[name](pred, y, mask)
+    half = LOSSES[name](pred.half(), y.half(), mask)
+    assert half.dtype == torch.float32
+    assert half.item() == pytest.approx(full.item(), rel=1e-2)

@@ -10,7 +10,7 @@ Public API
 masked_l1(pred, y, mask)                   : mean absolute error over valid cells
 masked_mse(pred, y, mask)                  : mean squared error over valid cells
 masked_sobel_l1(pred, y, mask)             : Sobel-gradient term added to masked L1 (circular padding)
-masked_tail_l1(pred, y, mask, gamma, clip) : tail-weighted L1 emphasizing peak wind speeds
+masked_tail_l1(pred, y, mask, gamma, clip) : tail-weighted L1 emphasizing peak wind speeds (weights capped at clip)
 masked_tail_l1_gamma1(pred, y, mask)       : tail-weighted L1 with gamma=1
 masked_tail_l1_gamma2(pred, y, mask)       : tail-weighted L1 with gamma=2
 masked_fft_l1(pred, y, mask)               : FFT-magnitude term added to masked L1
@@ -104,11 +104,12 @@ def masked_sobel_l1(pred: torch.Tensor, y: torch.Tensor, mask: torch.Tensor,
 
 def masked_tail_l1(pred: torch.Tensor, y: torch.Tensor, mask: torch.Tensor,
                    gamma: float = 1.0, clip: float = 5.0) -> torch.Tensor:
-    """Tail-weighted L1 with weights w = (U / U_mean)^gamma, clipped to prevent outlier instability."""
-    m = (mask > 0).float()
-    if m.sum() == 0:
-        return torch.tensor(0.0, device=pred.device, dtype=torch.float32)
+    """Tail-weighted L1 with weights w = (U / U_mean)^gamma, each weight capped at ``clip``.
 
+    The cap applies to the weight itself, so with gamma = 2 no cell counts more than ``clip`` times.
+    A batch without valid cells gives 0 and still back-propagates (all weights are 0 there).
+    """
+    m = (mask > 0).float()
     # Mean speed of valid open-ground cells per item
     dims = tuple(range(1, y.ndim)) if y.ndim > 1 else (0,)
     y_valid = y.float() * m
@@ -116,7 +117,7 @@ def masked_tail_l1(pred: torch.Tensor, y: torch.Tensor, mask: torch.Tensor,
     u_mean = (y_valid.sum(dim=dims, keepdim=True) / valid_count.clamp(min=1.0)).clamp(min=1e-4)
 
     ratio = y.float() / u_mean
-    weights = torch.clamp(ratio, min=0.0, max=clip) ** gamma
+    weights = ratio.clamp(min=0.0).pow(gamma).clamp(max=clip)
     error = (pred.float() - y.float()).abs() * weights * m
     return error.sum() / m.sum().clamp(min=1.0)
 
@@ -173,20 +174,13 @@ def masked_mean_consistency_l1(pred: torch.Tensor, y: torch.Tensor, mask: torch.
     return l1 + alpha * mean_term
 
 
+# one name per loss, so a loop over LOSSES never trains the same loss twice
 LOSSES = {
     "l1": masked_l1,
     "mse": masked_mse,
     "sobel": masked_sobel_l1,
-    "gradient": masked_sobel_l1,
-    "sobel_l1": masked_sobel_l1,
     "tail_w1": masked_tail_l1_gamma1,
     "tail_w2": masked_tail_l1_gamma2,
-    "tail1": masked_tail_l1_gamma1,
-    "tail2": masked_tail_l1_gamma2,
     "fft": masked_fft_l1,
-    "spectral": masked_fft_l1,
-    "fft_l1": masked_fft_l1,
     "mean_consistency": masked_mean_consistency_l1,
-    "mean": masked_mean_consistency_l1,
-    "mean_l1": masked_mean_consistency_l1,
 }
