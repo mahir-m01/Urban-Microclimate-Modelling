@@ -1,0 +1,43 @@
+{
+  "n_cases": 482,
+  "n_by_subset": {
+    "realistic": 292,
+    "idealized": 190
+  },
+  "n_resampled_from_0p5m": 194,
+  "cache_files_match_dev_cases": true,
+  "n_test_groups_in_cache": 0,
+  "U_mean_max_rel_diff_vs_S02": 4.523816708346118e-06,
+  "H_round_trip_exact_all": true,
+  "U_nan_pattern_matches_all": true,
+  "U_native_exact_all": true,
+  "U_float16_max_error": 0.0039062491053414305,
+  "flow_offset_preserved_max_gap_deg": 0.00230234018724218,
+  "flow_offset_native_abs_max_deg": 179.9399069912514,
+  "transform_counts": {
+    "k=0, transposed=False": 396,
+    "k=0, transposed=True": 2,
+    "k=1, transposed=False": 74,
+    "k=3, transposed=False": 7,
+    "k=3, transposed=True": 3
+  },
+  "cache_size_mb": 873.4,
+  "n_cells_1m": 103884750,
+  "loader": {
+    "dataset_load_s": 5.0,
+    "n_batches": 1000,
+    "batch_size": 16,
+    "patch": 256,
+    "border": 16,
+    "patches_per_epoch": 1586,
+    "seconds_per_batch": 0.0249,
+    "loss_cells_fraction_mean": 0.5678,
+    "loss_cells_fraction_min": 0.4856,
+    "patches_without_loss_cells": 0
+  },
+  "timing": {
+    "workers": 8,
+    "build_s": 20.4,
+    "script_s": 51.5
+  }
+}

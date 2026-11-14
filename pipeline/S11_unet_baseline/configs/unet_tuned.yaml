@@ -1,0 +1,25 @@
+# S11 final: the periodic U-Net with the settings Optuna chose (trial 15 of tune_optuna.py on fold 0's
+# inner-validation groups, rounded to two significant figures). Everything else matches unet.yaml.
+# Run: uv run python -m urbanwind.dl.train --config pipeline/S11_unet_baseline/configs/unet_tuned.yaml --seed 0
+exp_id: s11_unet_tuned
+stage: S11
+out_dir: pipeline/S11_unet_baseline/outputs/runs
+split: grouped
+model:
+  name: unet
+  kwargs: {widths: [24, 48, 96, 192], bottleneck: 384, dropout: 0.08}
+loss: l1
+lr: 3.6e-4
+min_lr: 1.0e-5
+weight_decay: 6.5e-5
+batch: 16
+max_epochs: 100
+patience: 30
+inner_val_fraction: 0.15
+patch: 256
+border: 16
+mirror: true
+amp: true
+clip: 1.0
+mirror_tta: true
+native_upsample: bilinear   # how a 1 m prediction reaches a 0.5 m case's grid (bilinear or copy)

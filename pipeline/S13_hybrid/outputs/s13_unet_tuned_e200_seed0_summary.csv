@@ -1,0 +1,17 @@
+variant,split,subset,n_cases,pooled_r2,median_within_case_r2,mean_mae,mean_mae_ms,median_nrmse,median_corr,mean_delta_p95,mean_delta_max,mean_level_err,mean_pattern_err
+s11_unet_tuned_seed0,grouped,all,482,0.7092,0.5662,0.4856,0.1003,0.3723,0.7654,-0.4571,-2.1117,0.0464,0.4208
+s11_unet_tuned_seed0,grouped,idealized,190,0.9346,0.6673,0.3113,0.0640,0.2848,0.8308,-0.2684,-1.3460,0.0233,0.1748
+s11_unet_tuned_seed0,grouped,realistic,292,0.6768,0.5234,0.5991,0.1240,0.3939,0.7467,-0.5799,-2.6098,0.0614,0.5809
+s11_unet_tuned_seed0,grouped,"all, without flagged",476,0.7090,0.5654,0.4853,0.1002,0.3709,0.7649,-0.4542,-2.1012,0.0468,0.4203
+s11_unet_tuned_seed1,grouped,all,482,0.7122,0.5597,0.4840,0.1000,0.3746,0.7622,-0.4569,-2.0834,0.0438,0.4183
+s11_unet_tuned_seed1,grouped,idealized,190,0.9369,0.6210,0.3095,0.0636,0.2860,0.8166,-0.2782,-1.3605,0.0189,0.1734
+s11_unet_tuned_seed1,grouped,realistic,292,0.6799,0.5227,0.5976,0.1237,0.3924,0.7429,-0.5731,-2.5538,0.0601,0.5776
+s11_unet_tuned_seed1,grouped,"all, without flagged",476,0.7120,0.5591,0.4838,0.0999,0.3733,0.7618,-0.4550,-2.0736,0.0442,0.4180
+s11_unet_tuned_seed2,grouped,all,482,0.7111,0.5953,0.4720,0.0975,0.3632,0.7823,-0.4385,-1.9445,0.0528,0.3975
+s11_unet_tuned_seed2,grouped,idealized,190,0.9442,0.6828,0.2931,0.0602,0.2662,0.8415,-0.2509,-1.3007,0.0213,0.1573
+s11_unet_tuned_seed2,grouped,realistic,292,0.6776,0.5437,0.5885,0.1218,0.3808,0.7570,-0.5605,-2.3634,0.0734,0.5537
+s11_unet_tuned_seed2,grouped,"all, without flagged",476,0.7109,0.5951,0.4716,0.0974,0.3619,0.7819,-0.4353,-1.9350,0.0532,0.3969
+s13_unet_tuned_e200_seed0,grouped,all,482,0.7193,0.6016,0.4641,0.0959,0.3566,0.7944,-0.4127,-1.9111,0.0431,0.3956
+s13_unet_tuned_e200_seed0,grouped,idealized,190,0.9486,0.7286,0.2731,0.0561,0.2498,0.8658,-0.2166,-1.2657,0.0163,0.1385
+s13_unet_tuned_e200_seed0,grouped,realistic,292,0.6863,0.5457,0.5883,0.1217,0.3826,0.7560,-0.5404,-2.3311,0.0606,0.5629
+s13_unet_tuned_e200_seed0,grouped,"all, without flagged",476,0.7191,0.6012,0.4636,0.0958,0.3535,0.7939,-0.4085,-1.9030,0.0434,0.3951

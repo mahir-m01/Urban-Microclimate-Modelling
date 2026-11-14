@@ -141,6 +141,7 @@ PYTHONPATH=. uv run python pipeline/S06b_feature_selection_AS/run_pca.py
 PYTHONPATH=. uv run python pipeline/S06b_feature_selection_AS/plot_and_consolidate.py
 uv run python pipeline/S07_pixel_model/s07_pixel_model.py         # pixel-level model (about 35 minutes)
 uv run python pipeline/S07_pixel_model/s07_diagnostics.py          # diagnostics (about 30 minutes)
+uv run python pipeline/S10_dl_data_pipeline/build_cache.py        # deep-learning cache (under a minute)
 uv run ruff check src pipeline && uv run pytest -q                 # lint and tests
 ```
 
@@ -153,7 +154,7 @@ uv run ruff check src pipeline && uv run pytest -q                 # lint and te
 ```text
 Urban-Microclimate-Modelling/
 ├── data/                           case catalog, metadata, name map, frozen splits
-├── src/urbanwind/                  shared package: loader, metrics, evaluator, splits, features
+├── src/urbanwind/                  shared package: loader, metrics, evaluator, splits, features, deep-learning data (dl)
 ├── pipeline/
 │   ├── S01_data_ingestion/         catalog builder and downloader
 │   ├── S02_preprocessing/          profile preprocessing and case-level targets
@@ -163,7 +164,8 @@ Urban-Microclimate-Modelling/
 │   ├── S06_case_models/            case-level models (S06a first run, S06c comparison)
 │   ├── S06b_feature_selection_AS/  feature selection and PCA study
 │   ├── S07_pixel_model/            pixel-level model and diagnostics
-│   └── S09_phase1_evaluation/      scoring of the frozen test set
+│   ├── S09_phase1_evaluation/      scoring of the frozen test set
+│   └── S10_dl_data_pipeline/       deep-learning cache, training patches and full-domain prediction
 ├── reports/                        Phase 1 report (PDF) and key references
 ├── results/                        experiment log (runs.csv; runs_v1.csv is the log before the metric columns were corrected); predictions are not tracked
 ├── .github/workflows/              lint and tests on every pull request

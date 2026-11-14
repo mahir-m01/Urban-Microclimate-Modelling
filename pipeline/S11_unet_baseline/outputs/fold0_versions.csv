@@ -1,0 +1,7 @@
+run,n_cases,pooled_r2,median_case_r2,median_case_r2_idealized,median_case_r2_realistic,mean_mae,inner_val_rmse
+s11_unet_v1_seed0,97,0.7770,0.5520,0.4669,0.5599,0.4778,
+s11_unet_seed0,97,0.7875,0.5721,0.5450,0.5805,0.4656,0.6080
+s11_unet_tuned_seed0,97,0.7907,0.5897,0.5645,0.6011,0.4570,0.5992
+s11_unet_tuned_seed1,97,0.7887,0.5671,0.5250,0.5832,0.4646,0.6079
+s11_unet_tuned_seed2,97,0.8020,0.6331,0.5940,0.6333,0.4419,0.5781
+s07_pixel_gbm,97,0.6581,0.2795,0.3030,0.2594,0.6049,

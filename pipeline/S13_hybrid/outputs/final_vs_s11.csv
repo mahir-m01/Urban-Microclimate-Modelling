@@ -1,0 +1,10 @@
+run,subset,metric,difference,ci_low,ci_high,share_of_cases_better,folds_better,ref_run
+s13_unet_tuned_e200_mean3,all,pooled_r2,0.0145,0.0071,0.0241,0.8568,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,all,median_case_r2,0.0392,0.0275,0.0619,0.8568,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,all,mean_mae,-0.0226,-0.0294,-0.0172,0.8589,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,idealized,pooled_r2,0.0118,0.0092,0.0175,0.9684,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,idealized,median_case_r2,0.0754,0.0403,0.0995,0.9684,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,idealized,mean_mae,-0.0361,-0.0449,-0.0298,0.9632,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,realistic,pooled_r2,0.0149,0.0065,0.0258,0.7842,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,realistic,median_case_r2,0.0311,0.0146,0.0440,0.7842,5,s11_unet_tuned_mean3
+s13_unet_tuned_e200_mean3,realistic,mean_mae,-0.0138,-0.0205,-0.0082,0.7911,5,s11_unet_tuned_mean3

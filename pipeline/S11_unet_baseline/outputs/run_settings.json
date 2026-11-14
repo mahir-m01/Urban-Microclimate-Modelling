@@ -1,0 +1,70 @@
+{
+  "s11_unet_tuned_random_seed0": {
+    "config_hash": "79732ab38373",
+    "native_upsample": "bilinear",
+    "infer_window": 0,
+    "infer_border": 64,
+    "infer_margin": 128,
+    "mirror_tta": true,
+    "train_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "predict_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "split": "random"
+  },
+  "s11_unet_tuned_seed0": {
+    "config_hash": "34a5c451a215",
+    "native_upsample": "bilinear",
+    "infer_window": 0,
+    "infer_border": 64,
+    "infer_margin": 128,
+    "mirror_tta": true,
+    "train_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "predict_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "split": "grouped"
+  },
+  "s11_unet_tuned_seed1": {
+    "config_hash": "34a5c451a215",
+    "native_upsample": "bilinear",
+    "infer_window": 0,
+    "infer_border": 64,
+    "infer_margin": 128,
+    "mirror_tta": true,
+    "train_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "predict_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "split": "grouped"
+  },
+  "s11_unet_tuned_seed2": {
+    "config_hash": "34a5c451a215",
+    "native_upsample": "bilinear",
+    "infer_window": 0,
+    "infer_border": 64,
+    "infer_margin": 128,
+    "mirror_tta": true,
+    "train_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "predict_code": {
+      "git_sha": "d8f3888",
+      "git_dirty": false
+    },
+    "split": "grouped"
+  }
+}

@@ -1,0 +1,11 @@
+run,block_m,pooled_r2_all,pooled_r2_idealized,pooled_r2_realistic,n_blocks_realistic
+s11_unet_tuned_seed0,1,0.6858,0.9348,0.6768,73408496
+s11_unet_tuned_seed0,2,0.6896,0.9390,0.6806,18843925
+s11_unet_tuned_seed0,4,0.6961,0.9450,0.6873,4680632
+s11_unet_tuned_seed0,8,0.7065,0.9546,0.6981,1166818
+s11_unet_tuned_seed0,16,0.7225,0.9667,0.7149,296079
+s13_unet_tuned_e200_seed0,1,0.6955,0.9489,0.6863,73408496
+s13_unet_tuned_e200_seed0,2,0.6992,0.9526,0.6902,18843925
+s13_unet_tuned_e200_seed0,4,0.7049,0.9569,0.6960,4680632
+s13_unet_tuned_e200_seed0,8,0.7136,0.9635,0.7051,1166818
+s13_unet_tuned_e200_seed0,16,0.7273,0.9715,0.7197,296079

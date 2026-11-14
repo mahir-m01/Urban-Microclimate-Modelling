@@ -1,0 +1,62 @@
+{
+  "_comment": "Queue of (config, seed, fold) jobs for pipeline/S11_unet_baseline/kaggle_runner.py in S12 architecture search",
+  "phase1_screening_fold0_seed0": [
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 0],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 0],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 0]
+  ],
+  "phase2_remaining_folds_seed0": [
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 1],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 2],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 3],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 4],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 1],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 2],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 3],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 4],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 1],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 2],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 3],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 4]
+  ],
+  "phase3_seeds_1_and_2_top2_candidates_example": [
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 1, 0],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 1, 1],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 1, 2],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 1, 3],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 1, 4],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 2, 0],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 2, 1],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 2, 2],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 2, 3],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 2, 4],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 1, 0],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 1, 1],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 1, 2],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 1, 3],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 1, 4],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 2, 0],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 2, 1],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 2, 2],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 2, 3],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 2, 4]
+  ],
+  "full_jobs_list": [
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 0],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 0],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 0],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 1],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 2],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 3],
+    ["pipeline/S12_architecture_search/configs/res_unet.yaml", 0, 4],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 1],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 2],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 3],
+    ["pipeline/S12_architecture_search/configs/attn_unet.yaml", 0, 4],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 1],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 2],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 3],
+    ["pipeline/S12_architecture_search/configs/fno.yaml", 0, 4]
+  ]
+}
+

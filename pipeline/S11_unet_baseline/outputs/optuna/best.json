@@ -1,0 +1,15 @@
+{
+  "trial": 15,
+  "val_rmse": 0.6912110004764239,
+  "params": {
+    "lr": 0.00036389324986385113,
+    "weight_decay": 6.54386845454948e-05,
+    "dropout": 0.07873605773511771,
+    "base_width": 24,
+    "depth": 4,
+    "context": "256/16",
+    "loss": "l1"
+  },
+  "n_trials": 33,
+  "n_complete": 17
+}

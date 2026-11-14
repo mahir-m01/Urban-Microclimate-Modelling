@@ -1,0 +1,6 @@
+run,n_cases,pooled_r2,median_case_r2,median_case_r2_idealized,median_case_r2_realistic,realistic_pooled_r2,mean_mae,inner_val_rmse,epochs_run,best_epoch,train_minutes,device,beats_best_s11_seed_pooled_r2,beats_best_s11_seed_median_case_r2
+s11_unet_tuned_seed0,97,0.7907,0.5897,0.5645,0.6011,0.7856,0.4570,0.5992,100,99,65.9000,cuda,,
+s11_unet_tuned_seed1,97,0.7887,0.5671,0.5250,0.5832,0.7838,0.4646,0.6079,100,99,63.4000,cuda,,
+s11_unet_tuned_seed2,97,0.8020,0.6331,0.5940,0.6333,0.7970,0.4419,0.5781,100,99,65.8000,cuda,,
+s13_convnext_unet_seed0,97,0.7414,0.5120,0.3410,0.5313,0.7357,0.5041,0.6627,100,99,129.1000,cuda,False,False
+s13_unet_tuned_e200_seed0,97,0.8054,0.6321,0.6261,0.6342,0.7999,0.4338,0.5695,200,169,128.8000,cuda,True,False

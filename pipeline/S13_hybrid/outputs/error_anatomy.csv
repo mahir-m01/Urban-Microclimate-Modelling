@@ -1,0 +1,14 @@
+measure,s11_unet_tuned_seed0,s11_unet_tuned_seed1,s11_unet_tuned_seed2
+realistic share of cells,0.8362,0.8362,0.8362
+realistic share of squared error,0.9722,0.9729,0.9761
+realistic error share from level,0.1136,0.1120,0.1522
+realistic error share from pattern,0.8864,0.8880,0.8478
+realistic truth variance share within cases,0.7017,0.7017,0.7017
+realistic error share of the worst 1 cases,0.0552,0.0548,0.0902
+realistic cell share of the worst 1 cases,0.0107,0.0107,0.0107
+realistic error share of the worst 5 cases,0.1360,0.1322,0.1646
+realistic cell share of the worst 5 cases,0.0456,0.0456,0.0456
+realistic error share of the worst 10 cases,0.1939,0.1940,0.2280
+realistic cell share of the worst 10 cases,0.0733,0.0733,0.0733
+realistic error share of the worst 20 cases,0.2801,0.2792,0.3110
+realistic cell share of the worst 20 cases,0.1519,0.1506,0.1473

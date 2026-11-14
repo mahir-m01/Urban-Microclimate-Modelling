@@ -1,0 +1,10 @@
+run,subset,metric,difference,ci_low,ci_high,share_of_cases_better,folds_better,ref_run
+s13_unet_tuned_e200_seed2,all,pooled_r2,0.0111,0.0009,0.0234,0.7801,4,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,all,median_case_r2,0.0286,0.0189,0.0511,0.7801,5,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,all,mean_mae,-0.0174,-0.0243,-0.0112,0.7780,5,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,idealized,pooled_r2,0.0092,0.0070,0.0138,0.9421,5,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,idealized,median_case_r2,0.0626,0.0334,0.0907,0.9421,5,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,idealized,mean_mae,-0.0300,-0.0374,-0.0241,0.9421,5,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,realistic,pooled_r2,0.0114,-0.0006,0.0251,0.6747,4,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,realistic,median_case_r2,0.0198,0.0075,0.0330,0.6747,3,s11_unet_tuned_seed2
+s13_unet_tuned_e200_seed2,realistic,mean_mae,-0.0091,-0.0168,-0.0018,0.6712,4,s11_unet_tuned_seed2

@@ -1,0 +1,27 @@
+# S12 Fourier Neural Operator (FNO) candidate: 4 spectral layers, 1x1 lifting, 1x1 projection
+# Run: uv run python -m urbanwind.dl.train --config pipeline/S12_architecture_search/configs/fno.yaml --seed 0
+exp_id: s12_fno
+stage: S12
+out_dir: pipeline/S12_architecture_search/outputs/runs
+split: grouped
+model:
+  name: fno
+  kwargs: {width: 48, modes1: 16, modes2: 16, n_layers: 4, dropout: 0.08}
+loss: l1
+lr: 3.6e-4
+min_lr: 1.0e-5
+weight_decay: 6.5e-5
+batch: 16
+max_epochs: 100
+patience: 30
+inner_val_fraction: 0.15
+patch: 256
+border: 16
+mirror: true
+amp: false
+clip: 1.0
+mirror_tta: true
+native_upsample: bilinear
+infer_window: 256
+infer_border: 16
+

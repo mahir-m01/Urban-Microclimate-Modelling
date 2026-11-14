@@ -1,0 +1,17 @@
+run,level_from,n_cases,pooled_r2,median_case_r2,realistic_pooled_r2,realistic_median_case_r2,mean_mae,level_r2
+s11_unet_tuned_seed0,U-Net,482,0.7092,0.5662,0.6768,0.5234,0.4856,0.8896
+s11_unet_tuned_seed0,LightGBM,482,0.6980,0.5489,0.6637,0.5027,0.4946,0.8761
+s11_unet_tuned_seed0,average of U-Net and LightGBM,482,0.7089,0.5633,0.6761,0.5270,0.4855,
+s11_unet_tuned_seed0,true mean (upper bound),482,0.7435,0.5803,0.7153,0.5510,0.4671,
+s11_unet_tuned_seed1,U-Net,482,0.7122,0.5597,0.6799,0.5227,0.4840,0.8956
+s11_unet_tuned_seed1,LightGBM,482,0.6997,0.5439,0.6655,0.4979,0.4942,0.8761
+s11_unet_tuned_seed1,average of U-Net and LightGBM,482,0.7114,0.5580,0.6788,0.5200,0.4846,
+s11_unet_tuned_seed1,true mean (upper bound),482,0.7452,0.5761,0.7171,0.5428,0.4663,
+s11_unet_tuned_seed2,U-Net,482,0.7111,0.5953,0.6776,0.5437,0.4720,0.8742
+s11_unet_tuned_seed2,LightGBM,482,0.7109,0.5721,0.6774,0.5224,0.4799,0.8761
+s11_unet_tuned_seed2,average of U-Net and LightGBM,482,0.7173,0.5897,0.6846,0.5413,0.4716,
+s11_unet_tuned_seed2,true mean (upper bound),482,0.7553,0.6091,0.7276,0.5684,0.4509,
+mean of the 3 seeds,U-Net,482,0.7194,0.5896,0.6874,0.5419,0.4728,0.8890
+mean of the 3 seeds,LightGBM,482,0.7111,0.5713,0.6779,0.5297,0.4820,0.8761
+mean of the 3 seeds,average of U-Net and LightGBM,482,0.7207,0.5912,0.6887,0.5443,0.4730,
+mean of the 3 seeds,true mean (upper bound),482,0.7568,0.6047,0.7297,0.5699,0.4533,

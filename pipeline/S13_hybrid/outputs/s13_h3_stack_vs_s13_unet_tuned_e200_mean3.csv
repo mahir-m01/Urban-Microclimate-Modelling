@@ -1,0 +1,10 @@
+run,subset,metric,difference,ci_low,ci_high,share_of_cases_better,folds_better,ref_run
+s13_h3_stack,all,pooled_r2,-0.0161,-0.0277,-0.0028,0.5062,1,s13_unet_tuned_e200_mean3
+s13_h3_stack,all,median_case_r2,0.0003,-0.0127,0.0131,0.5062,3,s13_unet_tuned_e200_mean3
+s13_h3_stack,all,mean_mae,0.0094,0.0043,0.0138,0.4274,0,s13_unet_tuned_e200_mean3
+s13_h3_stack,idealized,pooled_r2,0.0014,0.0005,0.0029,0.7632,5,s13_unet_tuned_e200_mean3
+s13_h3_stack,idealized,median_case_r2,0.0155,-0.0134,0.0412,0.7632,4,s13_unet_tuned_e200_mean3
+s13_h3_stack,idealized,mean_mae,-0.0023,-0.0063,0.0028,0.7053,3,s13_unet_tuned_e200_mean3
+s13_h3_stack,realistic,pooled_r2,-0.0186,-0.0310,-0.0040,0.3390,1,s13_unet_tuned_e200_mean3
+s13_h3_stack,realistic,median_case_r2,-0.0097,-0.0274,0.0017,0.3390,0,s13_unet_tuned_e200_mean3
+s13_h3_stack,realistic,mean_mae,0.0171,0.0115,0.0215,0.2466,0,s13_unet_tuned_e200_mean3

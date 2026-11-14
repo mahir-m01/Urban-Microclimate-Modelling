@@ -1,0 +1,10 @@
+variant,tests,device,parameters,train_loss_first_100,train_loss_last_100,median_grad_norm,seconds
+unet_s11_tuned,reference,mps,4860313,0.9613,0.8579,1.8154,108
+convnext_as_trained,the S13 ConvNeXt U-Net,mps,5461281,1.0763,0.8956,0.9970,228
+convnext_layer_scale_1,blocks start fully on instead of near the identity,mps,5461281,1.0732,0.8898,1.2264,227
+convnext_no_output_norm,no LayerNorm before the output layer,mps,5461217,1.2521,0.9149,1.6634,218
+convnext_lr_x3,three times the learning rate,mps,5461281,0.9985,0.9060,0.7976,227
+convnext_no_clipping,no gradient clipping,mps,5461281,1.0897,0.9011,0.9989,226
+convnext_groupnorm,GroupNorm instead of LayerNorm inside the blocks,mps,5461281,1.0760,0.8969,1.1061,186
+convnext_2_decoder_blocks,two ConvNeXt blocks per decoder level,mps,6185441,1.0715,0.8963,1.0563,284
+convnext_dense_skip_merge,dense 3x3 convolutions to merge the skips,mps,7639681,1.0796,0.8757,1.0871,281

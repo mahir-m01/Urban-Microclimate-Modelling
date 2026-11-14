@@ -20,6 +20,7 @@ dependencies = [
     "pyarrow>=17",
     "matplotlib>=3.9",
     "seaborn>=0.13",
+    "pyyaml>=6.0",
 ]
 
 [dependency-groups]
@@ -29,6 +30,23 @@ dev = [
     "ipykernel>=6.29",
     "nbconvert>=7.16",
 ]
+dl = [
+    # PyTorch publishes no wheels for Intel Macs; there the deep-learning tests skip themselves
+    "torch>=2.5; sys_platform != 'darwin' or platform_machine == 'arm64'",
+]
+
+[tool.uv]
+default-groups = ["dev", "dl"]
+
+# On Linux (the CI runner) uv installs the small CPU build of PyTorch, and on macOS the normal PyPI
+# wheel, which includes the Apple GPU (MPS) backend. Kaggle and Colab keep their own CUDA build.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
 
 [build-system]
 requires = ["hatchling"]
@@ -39,7 +57,7 @@ packages = ["src/urbanwind"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "."]
-testpaths = ["src/urbanwind/tests", "pipeline"]
+testpaths = ["src/urbanwind/tests", "src/urbanwind/dl/tests", "pipeline"]
 
 [tool.ruff]
 line-length = 120
