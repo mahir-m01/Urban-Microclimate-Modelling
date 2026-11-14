@@ -5,10 +5,10 @@ Asks where the S11 U-Net's remaining error lies, whether the Phase 1 tree models
 | | |
 | --- | --- |
 | Inputs | the S11 tuned predictions (`results/preds/s11_unet_tuned_seed{0,1,2}/`, not tracked), `pipeline/S11_unet_baseline/outputs/per_case_metrics.csv`, the S06c out-of-fold predictions, the S10 cache |
-| Outputs | `outputs/level_test.csv`, `outputs/error_anatomy.csv`, `outputs/fold0_screen.csv`, `outputs/convnext_diagnosis.csv`, `outputs/s13_unet_tuned_e200_seed0_summary.csv` and `_vs_s11.csv`, `outputs/scale_test.csv`, `outputs/final_summary.csv`, `outputs/final_vs_s11.csv`; `outputs/runs/<exp_id>/fold<k>.json` and `.csv` |
-| Code | `s13_level_pattern.py`, `s13_fold0.py`, `convnext_diagnosis.py`, `s13_vs_s11.py`, `s13_scale.py`, `s13_final.py`, `configs/`; `ConvNeXtUNet` in `src/urbanwind/dl/nets.py`; tests in `src/urbanwind/dl/tests/test_s13_*.py` |
+| Outputs | `outputs/level_test.csv`, `outputs/error_anatomy.csv`, `outputs/fold0_screen.csv`, `outputs/convnext_diagnosis.csv`, `outputs/s13_unet_tuned_e200_seed0_summary.csv` and `_vs_s11.csv`, `outputs/scale_test.csv`, `outputs/final_summary.csv`, `outputs/final_vs_s11.csv`, `outputs/s13_h3_stack*` and `outputs/h3*_feature_importance.csv`; `outputs/runs/<exp_id>/fold<k>.json` and `.csv` |
+| Code | `s13_level_pattern.py`, `s13_fold0.py`, `convnext_diagnosis.py`, `s13_vs_s11.py`, `s13_scale.py`, `s13_final.py`, `s13_h3_stack.py`, `configs/`; `ConvNeXtUNet` in `src/urbanwind/dl/nets.py`; tests in `src/urbanwind/dl/tests/test_s13_*.py` and `tests/` |
 
-Status: the network experiments are complete. The level test, the error anatomy, the fold-0 screen, the ConvNeXt diagnosis, the scale test, and three seeds of the 200-epoch U-Net over all five folds are done.
+Status: complete. The level test (H1), the error anatomy, the fold-0 screen, the ConvNeXt diagnosis, the scale test, three seeds of the 200-epoch U-Net over all five folds, and residual stacking (H3) are done. The FiLM network (H2) was not run.
 
 ## 1. Where the S11 error is (`s13_level_pattern.py`)
 
@@ -136,6 +136,31 @@ The networks predict every open-ground cell. Averaging both truth and prediction
 
 Even over 16 m blocks, about the size of a city block, the realistic R² rises by only about 0.03 to 0.04. The remaining error is in the street-scale pattern of cities the network has not seen, not in fine detail. (Idealized cases are stored at 0.5 m, so their 1 m row averages 2 × 2 cells.)
 
+## 6. H3: residual stacking with the Phase 1 pixel features (`s13_h3_stack.py`)
+
+A LightGBM model learns the final network's error cell by cell (residual = truth - network prediction) from the network's out-of-fold prediction and the S07 pixel features. The hybrid prediction is the network prediction plus the predicted residual. As in S07, the stacker for outer fold k trains on 3,000 random open-ground cells of each case in the other four folds and predicts every open cell of the fold-k cases. Three variants were run:
+
+| Model | Pooled R² | Median per-case R² | Mean MAE (u*) | Mean ΔP95 (u*) | Realistic pooled R² |
+| --- | --- | --- | --- | --- | --- |
+| Final U-Net, mean of 3 seeds | 0.7339 | 0.6288 | 0.4502 | -0.4149 | 0.7023 |
+| H3, all S07 features, S07 tree settings | 0.7178 | 0.6291 | 0.4596 | -0.3338 | 0.6838 |
+| H3, per-cell features only | 0.7214 | 0.6226 | 0.4603 | -0.3281 | 0.6880 |
+| H3, per-cell features, small model (200 trees, 15 leaves) | 0.7234 | 0.6252 | 0.4578 | -0.3293 | 0.6905 |
+
+Against the final U-Net, case by case, with 95% intervals from 2,000 resamples of whole cities and layout families (`outputs/s13_h3_stack*_vs_s13_unet_tuned_e200_mean3.csv`):
+
+| Variant | Pooled R² | Mean MAE (u*) | Realistic cases with higher R² |
+| --- | --- | --- | --- |
+| All S07 features | -0.0161 [-0.0277, -0.0028] | +0.0094 [0.0043, 0.0138] | 34% |
+| Per-cell features only | -0.0125 [-0.0341, 0.0069] | +0.0102 [0.0032, 0.0170] | 29% |
+| Per-cell features, small model | -0.0104 [-0.0334, 0.0082] | +0.0077 [0.0012, 0.0147] | 52% |
+
+- **No variant improves pooled R² or MAE.** Each costs about 0.01 to 0.016 pooled R², and each raises the mean MAE, with intervals that exclude zero.
+- **Every variant reduces the under-prediction of peak speeds**, from a mean ΔP95 of -0.41 to -0.33 u*, about a fifth. The stacker corrects the network's bias at fast cells but adds error elsewhere.
+- **With the case descriptors, the stacker leans on them most** (frontal area index 15%, plan area density 9% of the gain; `outputs/h3_feature_importance.csv`). It learns per-case corrections that do not carry over to unseen cities, the same lesson as the level test in section 1.
+
+The hybrid therefore trades mean accuracy for better peaks. The final model stays the 200-epoch U-Net; the stacker is an option only where peak speeds matter more than the mean field.
+
 ## Running it
 
 ```bash
@@ -146,12 +171,16 @@ uv run python -m pipeline.S13_hybrid.convnext_diagnosis      # about 30 minutes 
 uv run python -m pipeline.S13_hybrid.s13_vs_s11              # needs all five folds of the candidate's predictions
 uv run python -m pipeline.S13_hybrid.s13_scale               # block-averaged R² of chosen runs
 uv run python -m pipeline.S13_hybrid.s13_final               # the three-seed ensembles; needs every seed's predictions
+uv run python -m pipeline.S13_hybrid.s13_h3_stack [--local] [--small]   # H3 stacker (LightGBM, no PyTorch), after s13_final
+uv run python -m pipeline.S13_hybrid.s13_vs_s11 s13_h3_stack s13_unet_tuned_e200_mean3   # H3 against the final U-Net
 ```
 
 The candidates were trained on Kaggle T4 GPUs with `pipeline/S11_unet_baseline/kaggle_runner.py`, and their fold-0 predictions rebuilt locally with `--repredict`.
 
 ## Limitations
 
+- H3 trains on out-of-fold network predictions, as issue #38 asks; those predictions for the other folds came from networks that had seen fold k's cases, a second-order dependence that is standard in stacking.
+- The FiLM network (H2) was not run.
 - The level test rescales finished predictions; a network trained to predict U/U_mean could behave differently, but the true-mean upper bound limits what any level correction can add.
 - The diagnosis runs are short (400 steps on 128×128 patches); they rank the variants but do not show where each would end after full training.
 - The ConvNeXt U-Net was not tuned; it uses the settings Optuna chose for the U-Net. The diagnosis shows the learning rate and clipping are not what holds it back.
