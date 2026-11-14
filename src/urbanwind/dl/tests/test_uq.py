@@ -120,7 +120,7 @@ class TestDeepEnsemblePredict:
             x = torch.randn(1, 5, 32, 32)
 
             def _predict(ckpts, x, device="cpu", in_ch=5):
-                from urbanwind.dl.uq import load_s13_checkpoint, S13UNet
+                from urbanwind.dl.uq import load_s13_checkpoint
                 import numpy as np
                 preds = []
                 for ckpt in ckpts:

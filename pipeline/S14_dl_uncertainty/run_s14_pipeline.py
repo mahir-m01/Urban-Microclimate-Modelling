@@ -11,7 +11,6 @@ from pathlib import Path
 
 import matplotlib
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 import torch
 import torch.nn as nn
@@ -19,9 +18,6 @@ from tqdm import tqdm
 
 from urbanwind.dl.uq import (
     load_s13_checkpoint,
-    group_conformal_calibrate,
-    compute_spearman,
-    selective_prediction_error,
 )
 
 REPO = Path(__file__).resolve().parents[2]
